@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('roll_type')->nullable()->comment('SupperAdmin,Destributer,WineMachineHolder');
-            $table->integer('created_by')->nullable()->comment('Who create roll');
-            $table->integer('permission_id')->nullable()->comment('Roll permission id');
+            $table->string('role_type')->comment('SupperAdmin,Destributer,WineMachineHolder');
+            $table->integer('role_created_by')->nullable()->comment('Who create role');
             $table->timestamps();
         });
     }

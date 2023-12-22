@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('wine_machines', function (Blueprint $table) {
             $table->id();
+            $table->string("machine_sn")->comment("Wine Machine Serial Number");
+            $table->integer("price")->nullable()->comment("Wine Machine Price");
             $table->timestamps();
         });
     }

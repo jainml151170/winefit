@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
+            $table->string('order_id');
+            $table->integer('subscription_type_id');
+            $table->string('subscription_amount');
+            $table->string('subscription_status')->default(0)->comment("0 => disable, 1 =>Enable");
+            $table->timestamp('subscription_start_date');
+            $table->timestamp('subscription_end_date');
+            $table->string('subscription_created_by')->comment('user_id');
             $table->timestamps();
         });
     }

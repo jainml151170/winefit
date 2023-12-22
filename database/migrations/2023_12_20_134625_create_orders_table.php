@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('machine_id');
+            $table->string('order_ammount');
+            $table->string('purchased_by');
+            $table->string('order_created_by');
             $table->timestamps();
         });
     }

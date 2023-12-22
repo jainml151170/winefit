@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -21,6 +20,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'user_phone',
+        'roll_id',
+        'status',
+        'created_by'
     ];
 
     /**
@@ -42,4 +45,52 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Define the relationship with Role model.
+     */
+    public function roleUser()
+    {
+        return $this->belongsTo(Role::class, 'role_id', 'id');
+    }
+
+    /**
+     * Define the relationship with AccountDetail model.
+     */
+    public function accountDetailUser()
+    {
+        return $this->hasMany(User::class, 'user_id', 'id');
+    }
+
+    /**
+     * Define the relationship with Role model.
+     */
+    public function roleCreatedBy()
+    {
+        return $this->hasMany(User::class, 'role_created_by', 'id');
+    }
+
+    /**
+     * Define the relationship with Order model.
+     */
+    public function orderCreatedBy()
+    {
+        return $this->hasMany(User::class, 'order_created_by', 'id');
+    }
+
+    /**
+     * Define the relationship with Order model.
+     */
+    public function orderPurchasedBy()
+    {
+        return $this->hasMany(User::class, 'purchased_by', 'id');
+    }
+
+    /**
+     * Define the relationship with Subscription model.
+     */
+    public function subscriptionCreatedBy()
+    {
+        return $this->hasMany(User::class, 'subscription_created_by', 'id');
+    }
 }
