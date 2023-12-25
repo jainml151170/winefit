@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('commissions', function (Blueprint $table) {
             $table->id();
+            $table->integer('order_id');
+            $table->integer('user_id');
+            $table->integer('commission_amount');
+            $table->boolean('commission_status');
             $table->timestamps();
         });
     }

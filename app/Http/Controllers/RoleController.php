@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Redirect;
 
 class RoleController extends Controller
 {
@@ -28,7 +31,34 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'role_type' => 'required',
+        ]);
+        try {
+            $id = Auth::id();
+            $admin = \App\Models\Admin\Admin::find($id);
+            $user = \App\Models\User::find($id);
+            if($admin || $user){
+                // dd('id : '.$id);
+                $roleType = $request->input('role_type');
+                $result = str_replace(' ', '_', $roleType);
+                $lowercaseRoleType = Str::lower($result);
+                $createRole = \App\Models\Role::create([
+                    'role_type' => $lowercaseRoleType,
+                    'role_created_by' => $id,
+                ]);
+
+                if($createRole){
+                    return Redirect::back()->withSuccess('Role Create Successfully');
+                }else {
+                    // Handle the case where role creation fails
+                    return Redirect::back()->withErrors('Role creation failed');
+                }
+
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     /**

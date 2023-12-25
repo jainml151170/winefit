@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('roll_id');
-            $table->string('status')->default(0)->comment("0 => disable, 1 =>Enable");
+            $table->string('roll_id')->default(3)->comment('user => 3');
+            $table->boolean('status')->comment("0 => disable, 1 =>Enable");
             $table->string('created_by')->comment('user_id');
             $table->rememberToken();
             $table->timestamps();

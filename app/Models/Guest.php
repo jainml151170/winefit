@@ -9,6 +9,8 @@ class Guest extends Model
 {
     use HasFactory;
 
+    protected $table = 'guests';
+    
     /**
      * The attributes that are mass assignable.
      *

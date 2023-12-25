@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('wine_orders', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->string('machine_sn');
+            $table->integer('wine_id');
+            $table->integer('card_id');
+            $table->string('dose');
+            $table->bigInteger('price');
+            $table->boolean('wine_order_status');
+            $table->text('comments');
             $table->timestamps();
         });
     }

@@ -25,4 +25,9 @@ class WineMachine extends Model
     {
         return $this->hasMany(Order::class, 'machine_id', 'id');
     }
+
+    public function wine()
+    {
+        return $this->belongsTo(Wine::class);
+    }
 }

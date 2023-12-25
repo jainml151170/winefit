@@ -34,4 +34,11 @@ class Role extends Model
     {
         return $this->belongsTo(User::class, 'role_created_by', 'id');
     }
+
+    public static function getRole()
+    {
+        // $roles = self::all();
+        // return $roles;
+        return self::all();
+    }
 }
