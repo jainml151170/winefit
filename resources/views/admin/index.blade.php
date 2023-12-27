@@ -4,28 +4,39 @@
   @include('admin.layout.head')
 </head>
 <body>
+  @include('admin.layout.header')
+  <section class="main-content">
+      <div class="main-content-menu d-flex">
+          @include('admin.layout.sidebar')
+          <div class="main-content-msg px-3 w-100">
+              @yield('section')
+          </div>
+      </div>
+  </section>
 
-@include('admin.layout.sidebar')
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+      const sidebar = document.getElementById('sidebar');
+      const content = document.getElementById('content');
+      const toggleButton = document.getElementById('sidebarCollapse');
 
-<div id="content" class="d-flex justify-content-between align-items-baseline">
-  <button type="button" id="sidebarCollapse">
-    <span id="toggleText"><i class="fa-solid fa-bars"></i></span>
-  </button>
-  <a class="text-decoration-none text-white user-account" href=""><i class="fa-regular fa-user"></i></a>
-  sdasdasd
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+      let isOpen = true; // Assuming the sidebar starts open
 
-<script>
-  const sidebar = document.getElementById('sidebar');
-  const content = document.getElementById('content');
+      function toggleSidebar() {
+          isOpen = !isOpen;
 
-  document.getElementById('sidebarCollapse').addEventListener('click', function () {
-    const isOpen = sidebar.style.left === '0px';
-    sidebar.style.left = isOpen ? '-250px' : '0';
-    content.style.marginLeft = isOpen ? '0' : '250px';
-  });
-</script>
+          sidebar.style.transition = 'width 0.3s linear, opacity 0.2s linear';
 
+          if (isOpen) {
+              sidebar.style.width = '200px';
+              sidebar.style.opacity = '1';
+
+          } else {
+              sidebar.style.width = '0';
+              sidebar.style.opacity = '0';
+          }
+      }
+      toggleButton.addEventListener('click', toggleSidebar);
+  </script>
 </body>
 </html>
