@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CreateUserController;
+use App\Http\Controllers\WineMachineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,8 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::post('admin-create-roles',[RoleController::class,'store'])->name('admin.create.roles');
         Route::view('admin-create-users','admin.pages.create_users')->name('admin.create.users');
         Route::post('admin-create-users',[CreateUserController::class,'createUser'])->name('admin.create.users');
+        Route::view('admin-create-wine-machine','admin.pages.create_wine_machine')->name('admin.create.winemachine');
+        Route::post('admin-create-wine-machine', [WineMachineController::class, 'store'])->name('admin.create.winemachine');
     });
 });
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\WineMachine;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class WineMachineController extends Controller
 {
@@ -28,7 +29,16 @@ class WineMachineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $createWineMachine = \App\Models\WineMachine::create([
+            'machine_sn' => $request->input('machine_sn'),
+            'price' => $request->input('price'),
+            
+        ]);
+        
+        if($createWineMachine){
+            return Redirect::back()->withSuccess('Wine Machine Added Successfully');
+        }
+        return Redirect::back()->withError('Wine Machine can not be Added');
     }
 
     /**
