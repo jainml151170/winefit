@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin\Admin;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -61,5 +65,43 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         //
+    }
+
+    public function updateSettings(Request $request)
+    {
+        $id = Auth::id();
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'user_phone' => ['required', 'numeric'],
+        ]);
+
+        $updateArrayForAdminTable = [
+            'name' => $request->input('name'),
+            'admin_phone' => $request->input('user_phone'),
+        ];
+
+        $updateArrayForuserTable = [
+            'name' => $request->input('name'),
+            'user_phone' => $request->input('user_phone'),
+        ];
+
+        if($request->password) {
+            $this->validate($request, [
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+            $password = Hash::make($request->input('password'));
+            $updateArrayForAdminTable['password'] = $password;
+            $updateArrayForuserTable['password'] = $password;
+
+        }
+        // dd($request->input());
+
+        $updateUser = User::whereId($id)->update($updateArrayForuserTable);
+        $updateUserInAdminTable = Admin::whereId($id)->update($updateArrayForAdminTable);
+        if ($updateUserInAdminTable && $updateUser ) {
+            return Redirect::route("admin.account")->withSuccess('Account Details Updated Successfully');
+        }
+        return Redirect::route("admin.account")->withError('Account Details can not be Updated');
+
     }
 }

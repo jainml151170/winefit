@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -54,9 +54,13 @@ class LoginController extends Controller
 
         // Attempt to authenticate as regular user
         if (Auth::attempt($credentials)) {
-            // Redirect to user dashboard
-            // dd('user');
-            return redirect()->route('user.dashboard');
+
+            if (Auth::user()->role_id == 1 ){
+                return redirect()->route('distributor.dashboard');
+            }
+            if (Auth::user()->role_id == 2 ){
+                return redirect()->route('winevendor.dashboard');
+            }
         }
 
         // Handle failed login attempt

@@ -25,4 +25,12 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function distributorDashboard()  {
+        return view('distributor.pages.dashboard');
+    }
+
+    public function distributorDashboard2()  {
+        dd('2');
+    }
 }

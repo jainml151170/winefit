@@ -17,11 +17,11 @@ class RoleSeeder extends Seeder
         //     'role_created_by' => 1,
         // ]);
         \App\Models\Role::create([
-            'role_type' => 'destributer',
+            'role_type' => 'Distributor',
             'role_created_by' => 1,
         ]);
         \App\Models\Role::create([
-            'role_type' => 'winemachineholder',
+            'role_type' => 'Wine Vendors',
             'role_created_by' => 1,
         ]);
     }

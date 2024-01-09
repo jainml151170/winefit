@@ -14,15 +14,19 @@ class AuthenticateAdmin
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $userType): Response
+    public function handle(Request $request, Closure $next, $roleId): Response
     {
-        // dd('userType : '.$userType);
-        // dd('roll_id : '.Auth::User()->roll_id);
-        // if (Auth::check() && Auth::User()->role_as == $userType) {
-        if (Auth::check() && Auth::User()->roll_id == $userType) {
+        // echo "Role Id : ".$roleId;
+        // echo "Role Id : ".Auth::User()->role_id;
+        // dd();
+        if (Auth::check() && Auth::User()->role_id === $roleId) {
             return $next($request);
+        } 
+        // Redirect based on the user's role
+        if (Auth::check() && Auth::user()->role_id == 1) {
+            return redirect('/distributor/dashboard');
         } else {
-            return redirect('/')->with('status','Please Login First');
+            return redirect('/winevendor/dashboard');
         }
     }
 }

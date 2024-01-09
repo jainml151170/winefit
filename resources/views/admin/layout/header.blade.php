@@ -18,12 +18,21 @@
                                 <i class="fa-regular fa-user"></i>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#"><i class="fas fa-sliders-h fa-fw"></i>
+                                <li><a class="dropdown-item" href="{{ route('admin.account') }}"><i class="fas fa-sliders-h fa-fw"></i>
                                         Account</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fas fa-cog fa-fw"></i> Settings</a>
+                                <li><a class="dropdown-item" href="{{ route('admin.setting') }}"><i class="fas fa-cog fa-fw"></i> Settings</a>
                                 </li>
-                                <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-fw"></i> Log
-                                        Out</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
                             </ul>
                         </li>
                     </ul>

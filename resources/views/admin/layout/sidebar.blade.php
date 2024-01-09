@@ -5,12 +5,12 @@
                     <a href="{{ route('admin.dashboard') }}" class=" text-decoration-none text-white"><i
                             class="fa-regular fa-envelope text-white"></i></a>
                 </li>
-                <li class="{{ Route::currentRouteName() === 'admin.create.users' ? 'active' : '' }}">
-                    <a href="{{ route('admin.create.users') }}" class="text-decoration-none text-white"><i
+                <li class="{{ Route::currentRouteName() === 'users.index' ? 'active' : '' }}">
+                    <a href="{{ route('users.index') }}" class="text-decoration-none text-white"><i
                             class="fa-regular fa-message text-white"></i></a>
                 </li>
-                <li class="{{ Route::currentRouteName() === 'admin.create.winemachine' ? 'active' : '' }}">
-                    <a href="#home" class="text-decoration-none text-white"><i
+                <li class="{{ Route::currentRouteName() === 'wine-machines.index' ? 'active' : '' }}">
+                    <a href="{{ route('wine-machines.index') }}" class="text-decoration-none text-white"><i
                             class="fa-solid fa-users text-white"></i></a>
                 </li>
                 <li>
@@ -26,11 +26,11 @@
                 <li class="{{ Route::currentRouteName() === 'admin.dashboard' ? 'active' : '' }}">
                     <a href="{{ route('admin.dashboard') }}">{{ __('Dashboard') }}</a>
                 </li>
-                <li class="{{ Route::currentRouteName() === 'admin.create.users' ? 'active' : '' }}">
-                    <a href="{{ route('admin.create.users') }}">{{ __('Create User') }}</a>
+                <li class="{{ Route::currentRouteName() === 'users.index' ? 'active' : '' }}">
+                    <a href="{{ route('users.index') }}">{{ __('Users') }}</a>
                 </li>
-                <li class="{{ Route::currentRouteName() === 'admin.create.winemachine' ? 'active' : '' }}">
-                    <a href="{{ route('admin.create.winemachine') }}">{{ __('Add Wine Machines') }}</a>
+                <li class="{{ Route::currentRouteName() === 'wine-machines.index' ? 'active' : '' }}">
+                    <a href="{{ route('wine-machines.index') }}">{{ __('Wine Machines') }}</a>
                 </li>
                 <li>
                     <a href="#contact">Contact</a>
